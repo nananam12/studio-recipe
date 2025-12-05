@@ -1,18 +1,19 @@
 package com.recipe.exceptions.user;
 
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 public enum UserExceptions {
-    NOT_FOUND("NOT_FOUND", 404),
-    CONFLICT("CONFLICT", 409),
-    INVALID_PASSWORD("INVALID_PASSWORD", 400),
-    UNAUTHORIZED("UNAUTHORIZED", 403);
+    NOT_FOUND("NOT_FOUND", HttpStatus.NOT_FOUND),
+    CONFLICT("CONFLICT", HttpStatus.CONFLICT),
+    INVALID_PASSWORD("INVALID_PASSWORD", HttpStatus.BAD_REQUEST),
+    UNAUTHORIZED("UNAUTHORIZED", HttpStatus.FORBIDDEN);
 
-    private String message;
-    private int code;
+    private final String message;
+    private final HttpStatus code;
 
-    UserExceptions(String message, int code) {
+    UserExceptions(String message, HttpStatus code) {
         this.message = message;
         this.code = code;
     }

@@ -51,7 +51,7 @@ public class SecurityConfig {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         
         corsConfiguration.setAllowedOriginPatterns(List.of(frontUrl));
-        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));  // PATCH 추가
         corsConfiguration.setAllowedHeaders(List.of("*"));
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setExposedHeaders(Arrays.asList("Authorization", "Refresh-Token"));
@@ -79,7 +79,7 @@ public class SecurityConfig {
                                 // 기본 페이지 허용
                                 .requestMatchers("/", "/error").permitAll()
                                 
-                                // 프론트엔드 라우트 허용 (추가)
+                                // 프론트엔드 라우트 허용
                                 .requestMatchers("/details/**").permitAll()
                                 .requestMatchers("/search/**").permitAll()
                                 .requestMatchers("/mypage/**").permitAll()
@@ -100,7 +100,10 @@ public class SecurityConfig {
                                 .requestMatchers("/api/admin/**", "/batch/**").permitAll()
                                 .requestMatchers("/test/**").permitAll()
                                 
-                                // 인증 필요 API (POST/PUT/DELETE)
+                                // ⭐ 인증 필요 API - /user/** 추가
+                                .requestMatchers("/user/**").authenticated()  // 추가!
+                                
+                                // 인증 필요 API (POST/PUT/DELETE/PATCH)
                                 .requestMatchers(HttpMethod.POST, "/api/recipes/write").authenticated()
                                 .requestMatchers(HttpMethod.POST, "/api/details/likes").authenticated()
                                 .requestMatchers(HttpMethod.POST, "/api/details/bookmarks").authenticated()

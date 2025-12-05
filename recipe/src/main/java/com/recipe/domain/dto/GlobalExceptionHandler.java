@@ -24,9 +24,7 @@ public class GlobalExceptionHandler {
         errorResponse.put("error", ex.getMessage());
         errorResponse.put("code", ex.getCode());
 
-        HttpStatus status = (ex.getCode() == 404) ? HttpStatus.NOT_FOUND :
-                (ex.getCode() == 409) ? HttpStatus.CONFLICT :
-                        HttpStatus.BAD_REQUEST;
+        HttpStatus status = ex.getCode();  // 수정: 이미 HttpStatus 타입이므로 바로 사용
 
         return new ResponseEntity<>(errorResponse, status);
     }

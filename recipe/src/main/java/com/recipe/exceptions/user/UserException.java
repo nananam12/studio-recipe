@@ -1,19 +1,22 @@
 package com.recipe.exceptions.user;
 
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 public class UserException extends RuntimeException {
-    String message;
-    int code;
+    private final String msg;
+    private final HttpStatus code;
 
-    public UserException(String message, int code) {
-        super(message);
-        this.message = message;
+    public UserException(String msg, HttpStatus code) {
+        super(msg);
+        this.msg = msg;
         this.code = code;
     }
 
-    public void changeMessage(String message){
-        this.message = message;
+    public UserException(String msg) {
+        super(msg);
+        this.msg = msg;
+        this.code = HttpStatus.BAD_REQUEST;
     }
 }
