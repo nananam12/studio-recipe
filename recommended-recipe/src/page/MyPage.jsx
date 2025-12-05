@@ -200,7 +200,7 @@ function MyPage() {
 
   const handleDeleteAccount = async (password) => {
     try {
-      await api.delete('/user/delete', {
+      await api.delete('/api/user/delete', {
         data: { password: password }
       });
 

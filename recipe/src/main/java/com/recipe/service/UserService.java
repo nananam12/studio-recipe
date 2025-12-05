@@ -7,7 +7,7 @@ import com.recipe.repository.LikeRepository;
 import com.recipe.repository.UserRepository;
 import com.recipe.repository.RecipeRepository;
 import com.recipe.repository.UserReferencesRepository;
-import com.recipe.repository.BookmarkRepository;  // ⭐ 추가
+import com.recipe.repository.BookmarkRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +23,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final LikeRepository likeRepository;
     private final UserReferencesRepository userReferencesRepository;
-    private final BookmarkRepository bookmarkRepository;  // ⭐ 추가
+    private final BookmarkRepository bookmarkRepository;
     private final PasswordEncoder passwordEncoder;
     private final RecipeRepository recipeRepository;
 
